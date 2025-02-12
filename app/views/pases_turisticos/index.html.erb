@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pases turisticos</h1>
+
+<div id="pases_turisticos">
+  <% @pases_turisticos.each do |pases_turistico| %>
+    <%= render pases_turistico %>
+    <p>
+      <%= link_to "Show this pases turistico", pases_turistico %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New pases turistico", new_pases_turistico_path %>

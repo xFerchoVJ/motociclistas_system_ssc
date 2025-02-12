@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @verificacion %>
+
+<div>
+  <%= link_to "Edit this verificacion", edit_verificacion_path(@verificacion) %> |
+  <%= link_to "Back to verificacions", verificacions_path %>
+
+  <%= button_to "Destroy this verificacion", @verificacion, method: :delete %>
+</div>

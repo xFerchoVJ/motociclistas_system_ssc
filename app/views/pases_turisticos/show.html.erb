@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @pases_turistico %>
+
+<div>
+  <%= link_to "Edit this pases turistico", edit_pases_turistico_path(@pases_turistico) %> |
+  <%= link_to "Back to pases turisticos", pases_turisticos_path %>
+
+  <%= button_to "Destroy this pases turistico", @pases_turistico, method: :delete %>
+</div>
