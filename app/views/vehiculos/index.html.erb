@@ -1,14 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 p-6 sm:p-8">
+  <!-- Notificación -->
+  <% if notice %>
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+      <%= notice %>
+    </div>
+  <% end %>
 
-<h1>Vehiculos</h1>
+  <!-- Título -->
+  <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Vehículos Registrados</h1>
 
-<div id="vehiculos">
-  <% @vehiculos.each do |vehiculo| %>
-    <%= render vehiculo %>
-    <p>
-      <%= link_to "Show this vehiculo", vehiculo %>
-    </p>
+  <!-- Lista de vehículos -->
+  <% if @vehiculos.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @vehiculos.each do |vehiculo| %>
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105">
+          <div class="p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2"><%= vehiculo.marca %> <%= vehiculo.modelo %></h2>
+            <p class="text-gray-600 mb-1"><strong>Submarca:</strong> <%= vehiculo.submarca %></p>
+            <p class="text-gray-600 mb-1"><strong>Año:</strong> <%= vehiculo.anio %></p>
+            <p class="text-gray-600 mb-1"><strong>Placa:</strong> <%= vehiculo.placa %></p>
+            <p class="text-gray-600 mb-4"><strong>VIN:</strong> <%= vehiculo.vin %></p>
+
+            <!-- Botón para ver detalles -->
+            <%= link_to "Ver detalles", vehiculo, class: "inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- Mensaje cuando no hay vehículos -->
+    <div class="text-center py-8">
+      <p class="text-gray-600 text-lg mb-4">Aún no has registrado ningún vehículo.</p>
+      <%= link_to "Registrar mi primer vehículo", new_vehiculo_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
+  <% end %>
+
+  <!-- Botón para agregar nuevo vehículo (solo se muestra si hay vehículos) -->
+  <% if @vehiculos.any? %>
+    <div class="mt-8 text-center">
+      <%= link_to "Agregar nuevo vehículo", new_vehiculo_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New vehiculo", new_vehiculo_path %>

@@ -1,42 +1,37 @@
-<div id="<%= dom_id vehiculo %>">
-  <p>
-    <strong>Marca:</strong>
-    <%= vehiculo.marca %>
-  </p>
+<div id="<%= dom_id vehiculo %>" class="bg-white rounded-lg shadow-lg p-6 sm:p-8">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Detalles del Vehículo</h2>
 
-  <p>
-    <strong>Modelo:</strong>
-    <%= vehiculo.modelo %>
-  </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Marca:</strong> <%= vehiculo.marca %></p>
+    </div>
 
-  <p>
-    <strong>Submarca:</strong>
-    <%= vehiculo.submarca %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Modelo:</strong> <%= vehiculo.modelo %></p>
+    </div>
 
-  <p>
-    <strong>Anio:</strong>
-    <%= vehiculo.anio %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Submarca:</strong> <%= vehiculo.submarca %></p>
+    </div>
 
-  <p>
-    <strong>Placa:</strong>
-    <%= vehiculo.placa %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Año:</strong> <%= vehiculo.anio %></p>
+    </div>
 
-  <p>
-    <strong>Estado emplacamiento:</strong>
-    <%= vehiculo.estado_emplacamiento %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Placa:</strong> <%= vehiculo.placa %></p>
+    </div>
 
-  <p>
-    <strong>Vin:</strong>
-    <%= vehiculo.vin %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Estado de emplacamiento:</strong> <%= vehiculo.estado_emplacamiento %></p>
+    </div>
 
-  <p>
-    <strong>User:</strong>
-    <%= vehiculo.user_id %>
-  </p>
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">VIN:</strong> <%= vehiculo.vin %></p>
+    </div>
 
+    <div>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Usuario:</strong> <%= vehiculo.user.email %></p>
+    </div>
+  </div>
 </div>

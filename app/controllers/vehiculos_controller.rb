@@ -1,9 +1,10 @@
 class VehiculosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_vehiculo, only: %i[ show edit update destroy ]
 
   # GET /vehiculos or /vehiculos.json
   def index
-    @vehiculos = Vehiculo.all
+    @vehiculos = Vehiculo.where(user_id: current_user.id)
   end
 
   # GET /vehiculos/1 or /vehiculos/1.json
@@ -22,10 +23,11 @@ class VehiculosController < ApplicationController
   # POST /vehiculos or /vehiculos.json
   def create
     @vehiculo = Vehiculo.new(vehiculo_params)
-
+    @vehiculo.user_id = current_user.id
+    
     respond_to do |format|
       if @vehiculo.save
-        format.html { redirect_to @vehiculo, notice: "Vehiculo was successfully created." }
+        format.html { redirect_to @vehiculo, notice: "Vehículo creado exitosamente." }
         format.json { render :show, status: :created, location: @vehiculo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class VehiculosController < ApplicationController
   def update
     respond_to do |format|
       if @vehiculo.update(vehiculo_params)
-        format.html { redirect_to @vehiculo, notice: "Vehiculo was successfully updated." }
+        format.html { redirect_to @vehiculo, notice: "Vehículo actualizado exitosamente." }
         format.json { render :show, status: :ok, location: @vehiculo }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +54,7 @@ class VehiculosController < ApplicationController
     @vehiculo.destroy!
 
     respond_to do |format|
-      format.html { redirect_to vehiculos_path, status: :see_other, notice: "Vehiculo was successfully destroyed." }
+      format.html { redirect_to vehiculos_path, status: :see_other, notice: "Vehículo eliminado exitosamente." }
       format.json { head :no_content }
     end
   end

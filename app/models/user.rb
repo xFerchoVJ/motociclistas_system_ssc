@@ -1,16 +1,24 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Campos adicionales
+  # Enum para roles
+  enum role: { user: 0, admin: 1 }
+
+  attribute :es_turista, :boolean, default: false
+  attribute :role, :integer, default: 0
+
+  # Validaciones
   validates :nombre, presence: true
-  validates :curp, uniqueness: true
+  validates :curp, uniqueness: true, length: { is: 18 }
   validates :email, uniqueness: true
 
+  # Relaciones
   belongs_to :club, optional: true
-  has_many :vehiculos
-  has_many :pases_turisticos
-  has_many :verificaciones
+  has_many :vehiculos, dependent: :destroy
+
+  # Métodos adicionales
+  def nombre_completo
+    "#{nombre} #{apellido_paterno} #{apellido_materno}".strip
+  end
 end

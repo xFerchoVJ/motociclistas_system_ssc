@@ -1,0 +1,37 @@
+ <!-- Navbar -->
+  <nav class="bg-blue-600 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex-shrink-0 flex items-center">
+          <%= link_to root_path, class: "text-white font-bold text-xl" do %>
+            ClubApp
+          <% end %>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:items-center">
+          <%= link_to "Inicio", root_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+          
+          <% if !user_signed_in? %>
+            <%= link_to "Registrarse", new_user_registration_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+          <% end %>
+
+          <% if user_signed_in?%>
+            <% if !current_user.admin? %>
+              <%= link_to "Mis Vehiculos", vehiculos_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+            <% else %>
+              <%= link_to "Clubs", clubs_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium"%>
+            <% end %>
+            <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, data: { turbo_method: :delete },  class: "text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm font-medium" %>
+          <% end %>
+          
+        </div>
+        <div class="sm:hidden flex items-center">
+          <button type="button" class="text-white hover:bg-blue-700 px-2 py-1 rounded-md">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>

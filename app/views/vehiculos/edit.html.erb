@@ -1,10 +1,14 @@
-<h1>Editing vehiculo</h1>
+<div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 p-6 sm:p-8">
+  <div class="max-w-3xl mx-auto">
+    <!-- Título -->
+    <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Editar Vehículo</h1>
 
-<%= render "form", vehiculo: @vehiculo %>
+    <!-- Formulario -->
+    <%= render "form", vehiculo: @vehiculo %>
 
-<br>
-
-<div>
-  <%= link_to "Show this vehiculo", @vehiculo %> |
-  <%= link_to "Back to vehiculos", vehiculos_path %>
+    <!-- Botón para volver -->
+    <div class="mt-8 text-center">
+      <%= link_to "Volver a vehículos", vehiculos_path, class: "inline-block bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
+  </div>
 </div>

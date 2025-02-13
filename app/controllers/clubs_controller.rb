@@ -1,4 +1,6 @@
 class ClubsController < ApplicationController
+  before_action :authenticate_user!
+  include AdminCheck
   before_action :set_club, only: %i[ show edit update destroy ]
 
   # GET /clubs or /clubs.json
@@ -58,6 +60,7 @@ class ClubsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_club
       @club = Club.find(params[:id])

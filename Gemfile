@@ -43,6 +43,12 @@ gem "bootsnap", require: false
 
 gem 'tailwindcss-rails'
 
+# gem 'rqrcode' # Para generar códigos QR
+# gem 'chunky_png' # Dependencia de rqrcode para manejar imágenes PNG
+# gem 'active_storage' # Para almacenar la imagen del QR
+
+gem 'faker', '~> 3.2'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
