@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
   include AdminCheck
+  before_action :authenticate_user!
   before_action :set_user, only: %i[ show destroy reactivate]
 
   def index

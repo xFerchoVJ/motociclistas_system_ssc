@@ -49,4 +49,25 @@ class Vehiculo < ApplicationRecord
     active: 1,
     inactive: 2
   }, _default: :in_progress
+
+  after_update :generate_qr_if_active
+
+  private
+
+  def generate_qr_if_active
+    if saved_change_to_status? && active?
+      # Obtener el host desde .env o usar localhost como predeterminado
+      host = ENV.fetch('APP_HOST', 'localhost:3000')
+      protocol = Rails.env.production? ? 'https' : 'http'
+      public_url = Rails.application.routes.url_helpers.public_show_vehicle_url(self, host: host, protocol: protocol)
+      begin
+        qr = RQRCode::QRCode.new(public_url)
+        png = qr.as_png(size: 300)
+        self.qr_code = "data:image/png;base64,#{Base64.strict_encode64(png.to_s)}"
+        save!
+      rescue => e
+        Rails.logger.error "Error al generar el QR: #{e.message}"
+      end
+    end
+  end
 end

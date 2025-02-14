@@ -1,6 +1,6 @@
 class Admin::ClubsController < ApplicationController
-  before_action :authenticate_user!
   include AdminCheck
+  before_action :authenticate_user!
   before_action :set_club, only: %i[ show edit update destroy ]
 
   # GET /clubs or /clubs.json

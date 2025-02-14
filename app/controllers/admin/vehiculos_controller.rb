@@ -1,6 +1,6 @@
 class Admin::VehiculosController < ApplicationController
-  before_action :authenticate_user!
   include AdminCheck
+  before_action :authenticate_user!
   before_action :set_vehiculo, only: [:accept, :decline]
 
   def accept

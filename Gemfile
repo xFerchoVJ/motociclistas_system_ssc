@@ -52,6 +52,7 @@ gem 'faker', '~> 3.2'
 
 gem 'kaminari' # Paginación
 gem 'ransack'  # Filtrado y búsqueda
+gem 'rqrcode'  # Generar códigos QR
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -59,6 +60,7 @@ gem 'ransack'  # Filtrado y búsqueda
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'dotenv-rails'
 end
 
 group :development do
