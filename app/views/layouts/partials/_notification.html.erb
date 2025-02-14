@@ -1,13 +1,13 @@
-<% if notice %>
+<% if notice || alert %>
   <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 max-w-lg w-full" data-controller="notification">
-    <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-lg shadow-lg flex items-center justify-between">
+    <div class="<%= notice ? 'bg-green-50 border-l-4 border-green-400' : 'bg-red-50 border-l-4 border-red-400' %> p-4 rounded-lg shadow-lg flex items-center justify-between">
       <div class="flex items-center">
-        <svg class="h-6 w-6 text-green-400 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        <svg class="h-6 w-6 <%= notice ? 'text-green-400' : 'text-red-400' %> mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<%= notice ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12' %>" />
         </svg>
-        <p class="text-green-700"><%= notice %></p>
+        <p class="<%= notice ? 'text-green-700' : 'text-red-700' %>"><%= notice || alert %></p>
       </div>
-      <button type="button" class="text-green-700 hover:text-green-900" data-action="notification#close">
+      <button type="button" class="<%= notice ? 'text-green-700 hover:text-green-900' : 'text-red-700 hover:text-red-900' %>" data-action="notification#close">
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>

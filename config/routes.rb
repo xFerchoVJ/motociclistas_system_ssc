@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       member do
         patch :accept
         patch :decline
+        get :download_pdf
+        get :preview_pdf
       end
     end
   end

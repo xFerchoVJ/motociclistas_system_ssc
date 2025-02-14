@@ -68,6 +68,10 @@ class Vehiculo < ApplicationRecord
       rescue => e
         Rails.logger.error "Error al generar el QR: #{e.message}"
       end
+    # Agregar que si el estado cambia a inactivo o en progreso, se elimine el QR
+    elsif saved_change_to_status? && (inactive? || in_progress?)
+      self.qr_code = nil
+      save!
     end
   end
 end

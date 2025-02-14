@@ -53,6 +53,8 @@ gem 'faker', '~> 3.2'
 gem 'kaminari' # Paginación
 gem 'ransack'  # Filtrado y búsqueda
 gem 'rqrcode'  # Generar códigos QR
+gem 'prawn', '~> 2.1' # Generar PDFs
+gem 'prawn-table', '~> 0.2.2' # Tablas en PDFs
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
