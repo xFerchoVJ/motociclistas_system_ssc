@@ -1,11 +1,12 @@
-class ClubsController < ApplicationController
+class Admin::ClubsController < ApplicationController
   before_action :authenticate_user!
   include AdminCheck
   before_action :set_club, only: %i[ show edit update destroy ]
 
   # GET /clubs or /clubs.json
   def index
-    @clubs = Club.all
+    @q = Club.ransack(params[:q])
+    @clubs = @q.result(distinct: true).page(params[:page]).per(5)
   end
 
   # GET /clubs/1 or /clubs/1.json
@@ -27,7 +28,7 @@ class ClubsController < ApplicationController
 
     respond_to do |format|
       if @club.save
-        format.html { redirect_to @club, notice: "Club was successfully created." }
+        format.html { redirect_to admin_club_path(@club), notice: "Club creado correctamente." }
         format.json { render :show, status: :created, location: @club }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +41,7 @@ class ClubsController < ApplicationController
   def update
     respond_to do |format|
       if @club.update(club_params)
-        format.html { redirect_to @club, notice: "Club was successfully updated." }
+        format.html { redirect_to admin_club_path(@club), notice: "Club actualizado correctamente." }
         format.json { render :show, status: :ok, location: @club }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +55,7 @@ class ClubsController < ApplicationController
     @club.destroy!
 
     respond_to do |format|
-      format.html { redirect_to clubs_path, status: :see_other, notice: "Club was successfully destroyed." }
+      format.html { redirect_to admin_clubs_path status: :see_other, notice: "Club eliminado correctamente." }
       format.json { head :no_content }
     end
   end

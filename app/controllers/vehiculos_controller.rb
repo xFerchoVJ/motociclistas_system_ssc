@@ -1,5 +1,6 @@
 class VehiculosController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_user
   before_action :set_vehiculo, only: %i[ show edit update destroy ]
 
   # GET /vehiculos or /vehiculos.json
@@ -68,5 +69,11 @@ class VehiculosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def vehiculo_params
       params.require(:vehiculo).permit(:marca, :modelo, :submarca, :anio, :placa, :estado_emplacamiento, :vin, :user_id)
+    end
+
+    def check_user
+      if current_user.admin?
+        redirect_to root_path
+      end
     end
 end

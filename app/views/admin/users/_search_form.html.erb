@@ -1,0 +1,48 @@
+ <!-- Formulario de búsqueda (inicialmente oculto) -->
+  <div id="search_form" class="<%= @q.conditions.any? ? '' : 'hidden' %> mb-8">
+    <%= search_form_for @q, url: admin_users_path, class: "bg-white rounded-lg shadow-lg p-6" do |f| %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Buscar por nombre -->
+        <div>
+          <%= f.label :nombre_cont, "Nombre", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :nombre_cont, placeholder: "Ej: Juan", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+
+        <!-- Buscar por apellido paterno -->
+        <div>
+          <%= f.label :apellido_paterno_cont, "Apellido Paterno", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :apellido_paterno_cont, placeholder: "Ej: Pérez", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+
+        <!-- Buscar por apellido materno -->
+        <div>
+          <%= f.label :apellido_materno_cont, "Apellido Materno", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :apellido_materno_cont, placeholder: "Ej: Gómez", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+
+        <!-- Buscar por CURP -->
+        <div>
+          <%= f.label :curp_cont, "CURP", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :curp_cont, placeholder: "Ej: ABC123456789012345", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+
+        <!-- Buscar por teléfono -->
+        <div>
+          <%= f.label :telefono_cont, "Teléfono", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :telefono_cont, placeholder: "Ej: 5551234567", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+
+        <!-- Buscar por email -->
+        <div>
+          <%= f.label :email_cont, "Email", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= f.search_field :email_cont, placeholder: "Ej: usuario@example.com", class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+      </div>
+
+      <!-- Botones de búsqueda y limpiar -->
+      <div class="mt-4 flex justify-end gap-4">
+        <%= f.submit "Buscar", class: "bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+        <%= link_to "Limpiar", admin_users_path, class: "bg-gray-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200" %>
+      </div>
+    <% end %>
+  </div>

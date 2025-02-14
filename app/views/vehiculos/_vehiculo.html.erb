@@ -33,5 +33,19 @@
     <div>
       <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Usuario:</strong> <%= vehiculo.user.email %></p>
     </div>
+
+    <div class="col-span-1 sm:col-span-2">
+      <p class="text-gray-700">
+        <strong class="block text-sm font-medium text-gray-500 mb-2">Status:</strong>
+        <% if vehiculo.status == 'in_progress' %>
+          <span class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">En Progreso</span>
+          <p class="text-yellow-700 mt-2">Debe completar el registro en el módulo de la SSP.</p>
+        <% elsif vehiculo.status == 'active' %>
+          <span class="px-2 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Registrado</span>
+        <% elsif vehiculo.status == 'inactive' %>
+          <span class="px-2 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full">Inválido</span>
+        <% end %>
+      </p>
+    </div>
   </div>
 </div>

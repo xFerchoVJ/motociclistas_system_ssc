@@ -1,0 +1,17 @@
+es:
+  views:
+    pagination:
+      first: "Primera"
+      last: "Última"
+      previous: "Anterior"
+      next: "Siguiente"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No hay registros"
+          one: "Mostrando 1 registro"
+          other: "Mostrando todos los %{count} registros"
+      more_pages:
+        display_entries: "Mostrando %{entry_name} %{from} - %{to} de %{count} en total"

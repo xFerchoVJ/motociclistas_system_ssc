@@ -1,9 +1,25 @@
 Rails.application.routes.draw do
+  # Not Admins
+  devise_for :users
   resources :verificacions
   resources :pases_turisticos
   resources :vehiculos
-  resources :clubs
-  devise_for :users
+
+  namespace :admin do
+    resources :clubs
+    resources :users, only: %i[index show destroy] do
+      member do
+        patch :reactivate
+      end
+    end
+    
+    resources :vehiculos, only: [] do
+      member do
+        patch :accept
+        patch :decline
+      end
+    end
+  end
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

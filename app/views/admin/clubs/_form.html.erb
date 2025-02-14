@@ -1,0 +1,52 @@
+<%= form_with(model: [:admin, club], class: "bg-white rounded-lg shadow-lg p-6 sm:p-8") do |form| %>
+  <% if club.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+      <h2 class="font-bold"><%= pluralize(club.errors.count, "error") %> impidieron guardar este vehículo:</h2>
+      <ul class="list-disc list-inside">
+        <% club.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <%= form.label :nombre, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :nombre, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :direccion, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :direccion, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :estado, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :estado, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :municipio, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :municipio, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :telefono, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :telefono, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :email, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :email, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :representante, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :representante, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+  </div>
+  <div class="mt-8 text-center">
+    <%= form.submit "Guardar Club", class: "inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"%>
+  </div>
+<% end %>

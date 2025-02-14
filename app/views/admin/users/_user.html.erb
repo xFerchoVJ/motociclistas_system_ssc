@@ -1,0 +1,53 @@
+<div class="p-6 sm:p-8">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">Información Personal</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <p class="text-sm text-gray-500">Nombre completo</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.nombre %> <%= @user.apellido_paterno %> <%= @user.apellido_materno %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Correo electrónico</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.email %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">CURP</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.curp %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Estado</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.estado %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Municipio</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.municipio %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Teléfono</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.telefono %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Contacto de emergencia</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.contacto_emergencia %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Teléfono de emergencia</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.telefono_emergencia %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Tipo de sangre</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.tipo_sangre %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Donador de órganos</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.donador_organos ? 'Sí' : 'No' %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Alergias</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.alergias.presence || 'Ninguna' %></p>
+    </div>
+    <div>
+      <p class="text-sm text-gray-500">Medicamentos contraindicados</p>
+      <p class="text-lg font-medium text-gray-800"><%= @user.medicamento_contraindicado.presence || 'Ninguno' %></p>
+    </div>
+  </div>
+</div>

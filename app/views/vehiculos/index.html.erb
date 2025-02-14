@@ -1,11 +1,4 @@
 <div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 p-6 sm:p-8">
-  <!-- Notificación -->
-  <% if notice %>
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-      <%= notice %>
-    </div>
-  <% end %>
-
   <!-- Título -->
   <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Vehículos Registrados</h1>
 
@@ -20,6 +13,16 @@
             <p class="text-gray-600 mb-1"><strong>Año:</strong> <%= vehiculo.anio %></p>
             <p class="text-gray-600 mb-1"><strong>Placa:</strong> <%= vehiculo.placa %></p>
             <p class="text-gray-600 mb-4"><strong>VIN:</strong> <%= vehiculo.vin %></p>
+            <p class="text-gray-600 mb-4">
+              <strong>Status:</strong>
+              <% if vehiculo.status == 'in_progress' %>
+                <span class="px-2 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded-full">En Progreso</span>
+              <% elsif vehiculo.status == 'active' %>
+                <span class="px-2 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded-full">Registrado</span>
+              <% elsif vehiculo.status == 'inactive' %>
+                <span class="px-2 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full">Inválido</span>
+              <% end %>
+            </p>
 
             <!-- Botón para ver detalles -->
             <%= link_to "Ver detalles", vehiculo, class: "inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>

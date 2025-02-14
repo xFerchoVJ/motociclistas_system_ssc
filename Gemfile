@@ -49,6 +49,10 @@ gem 'tailwindcss-rails'
 
 gem 'faker', '~> 3.2'
 
+
+gem 'kaminari' # Paginación
+gem 'ransack'  # Filtrado y búsqueda
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

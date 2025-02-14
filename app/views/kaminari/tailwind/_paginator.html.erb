@@ -1,0 +1,9 @@
+<% if @users.total_pages > 1 %>
+  <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+    <%= link_to_if @users.prev_page, raw("&laquo;"), url_for(params.to_unsafe_h.merge(page: @users.prev_page)), class: "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" %>
+    <% (1..@users.total_pages).each do |page| %>
+      <%= link_to page, url_for(params.to_unsafe_h.merge(page: page)), class: "relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 #{'bg-blue-50 border-blue-500 text-blue-600' if page == @users.current_page}" %>
+    <% end %>
+    <%= link_to_if @users.next_page, raw("&raquo;"), url_for(params.to_unsafe_h.merge(page: @users.next_page)), class: "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" %>
+  </nav>
+<% end %>

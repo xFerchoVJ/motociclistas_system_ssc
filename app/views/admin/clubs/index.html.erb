@@ -1,11 +1,4 @@
 <div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100 p-6 sm:p-8">
-  <!-- Notificación -->
-  <% if notice %>
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-      <%= notice %>
-    </div>
-  <% end %>
-
   <!-- Título -->
   <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Clubs Registrados</h1>
 
@@ -24,7 +17,7 @@
             <p class="text-gray-600 mb-4"><strong>Representante:</strong> <%= club.representante %></p>
 
             <!-- Botón para ver detalles -->
-            <%= link_to "Ver detalles", club, class: "inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+            <%= link_to "Ver detalles", admin_club_path(club), class: "inline-block bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
           </div>
         </div>
       <% end %>
@@ -33,14 +26,14 @@
     <!-- Mensaje cuando no hay vehículos -->
     <div class="text-center py-8">
       <p class="text-gray-600 text-lg mb-4">Aún no has registrado ningún club.</p>
-      <%= link_to "Registrar club", new_club_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+      <%= link_to "Registrar club", new_admin_club_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
     </div>
   <% end %>
 
   <!-- Botón para agregar nuevo vehículo (solo se muestra si hay vehículos) -->
   <% if @clubs.any? %>
     <div class="mt-8 text-center">
-      <%= link_to "Agregar nuevo club", new_club_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+      <%= link_to "Agregar nuevo club", new_admin_club_path, class: "inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
     </div>
   <% end %>
 </div>
