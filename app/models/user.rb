@@ -5,9 +5,10 @@ class User < ApplicationRecord
   # Enums
   enum role: { user: 0, admin: 1 }
   enum status: {
+    inactive: 0,
     active: 1,
-    inactive: 0
-  }, _default: :active
+    in_progress: 2,
+  }, _default: :in_progress
 
   attribute :es_turista, :boolean, default: false
   attribute :role, :integer, default: 0
@@ -35,7 +36,9 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    active? ? super : :deleted_account
+    return :not_approved if in_progress?
+    return :deleted_account unless active?
+    super
   end
 
 

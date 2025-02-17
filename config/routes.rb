@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show destroy] do
       member do
         patch :reactivate
+        patch :approve_user
       end
     end
     

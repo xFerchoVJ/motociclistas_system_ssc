@@ -8,8 +8,6 @@ module AdminCheck
   private
 
   def check_admin
-    unless current_user.admin?
-      redirect_to root_path, alert: "No tienes permisos para acceder a esta sección"
-    end
+    redirect_to root_path, alert: "No tienes permisos para acceder a esta sección" unless current_user&.admin?
   end
 end

@@ -15,6 +15,7 @@ es:
       unauthenticated: "Debes iniciar sesión o registrarte antes de continuar."
       unconfirmed: "Debes confirmar tu dirección de correo electrónico antes de continuar."
       deleted_account: "Tu cuenta ha sido desactivada. Por favor, contacta al administrador."
+      not_approved: "Tu cuenta aún no ha sido aprobada por un administrador."
     mailer:
       confirmation_instructions:
         subject: "Instrucciones de confirmación"
@@ -41,6 +42,7 @@ es:
       signed_up_but_inactive: "Te has registrado exitosamente. Sin embargo, no pudimos iniciar tu sesión porque tu cuenta no está activada aún."
       signed_up_but_locked: "Te has registrado exitosamente. Sin embargo, no pudimos iniciar tu sesión porque tu cuenta está bloqueada."
       signed_up_but_unconfirmed: "Se ha enviado un mensaje con un enlace de confirmación a tu dirección de correo electrónico. Por favor, sigue el enlace para activar tu cuenta."
+      signed_up_but_not_approved: "Te has registrado exitosamente. Sin embargo, tu cuenta aún no ha sido aprobada por un administrador."
       update_needs_confirmation: "Has actualizado tu cuenta exitosamente, pero necesitamos verificar tu nueva dirección de correo electrónico. Por favor, revisa tu correo y sigue el enlace de confirmación para confirmar tu nueva dirección."
       updated: "Tu cuenta ha sido actualizada exitosamente."
       updated_but_not_signed_in: "Tu cuenta ha sido actualizada exitosamente, pero como cambiaste tu contraseña, debes iniciar sesión nuevamente."
