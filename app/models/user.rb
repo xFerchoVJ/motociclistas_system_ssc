@@ -14,9 +14,14 @@ class User < ApplicationRecord
   attribute :role, :integer, default: 0
 
   # Validaciones
-  validates :nombre, presence: true
-  validates :curp, uniqueness: true, length: { is: 18 }
-  validates :email, uniqueness: true
+  validates :nombre, presence: { message: "no puede estar en blanco" }
+  validates :apellido_paterno, presence: { message: "no puede estar en blanco" }
+  validates :apellido_materno, presence: { message: "no puede estar en blanco" }
+  validates :curp, uniqueness: { message: "ya está en uso" }, length: { is: 18, wrong_length: "debe tener 18 caracteres" }
+  validates :email, uniqueness: { message: "ya está en uso" }, presence: { message: "no puede estar en blanco" }
+  validates :telefono, presence: { message: "no puede estar en blanco" }
+  validates :role, presence: { message: "no puede estar en blanco" }
+  validates :status, presence: { message: "no puede estar en blanco" }
 
   # Relaciones
   belongs_to :club, optional: true
@@ -41,9 +46,7 @@ class User < ApplicationRecord
     super
   end
 
-
   # Método para filtrar con Ransack
-
   def self.ransackable_associations(auth_object = nil)
     ["club", "vehiculos"]
   end
@@ -56,6 +59,4 @@ class User < ApplicationRecord
   ransacker :nombre_completo do
     Arel.sql("CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno)")
   end
-
-
 end

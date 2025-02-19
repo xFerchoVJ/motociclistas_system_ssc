@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "no puede estar en blanco"
+            password:
+              blank: "no puede estar en blanco"
+            curp:
+              wrong_length: "debe tener 18 caracteres"
+  errors:
+    messages:
+      blank: "no puede estar en blanco"

@@ -1,33 +1,31 @@
-<nav class="bg-blue-600 shadow-lg" data-controller="menu">
+<nav class="bg-[#AB0A3D] shadow-lg" data-controller="menu">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <div class="flex-shrink-0 flex items-center">
-        <%= link_to root_path, class: "text-white font-bold text-xl" do %>
-          ClubApp
+        <%= link_to root_path, class: "flex items-center" do %>
+          <%= image_tag "IMG_8971.PNG", alt: "Logo", class: "h-auto w-24" %>
         <% end %>
       </div>
       <div class="hidden sm:ml-6 sm:flex sm:items-center">
-        <!-- Enlaces para desktop -->
-        <%= link_to "Inicio", root_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
-        
+        <%= link_to "Inicio", root_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
+
         <% if !user_signed_in? %>
-          <%= link_to "Registrarse", new_user_registration_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
-          <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Registrarse", new_user_registration_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
+          <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
         <% end %>
 
-        <% if user_signed_in?%>
+        <% if user_signed_in? %>
           <% if !current_user.admin? %>
-            <%= link_to "Mis Vehiculos", vehiculos_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Mis Vehículos", vehiculos_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
           <% else %>
-            <%= link_to "Clubs", admin_clubs_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium"%>
-            <%= link_to "Usuarios", admin_users_path, class: "text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium"%>
+            <%= link_to "Clubs", admin_clubs_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Usuarios", admin_users_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
           <% end %>
-          <%= link_to "Cerrar Sesión", destroy_user_session_path, class: "text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm font-medium",  data: { turbo_method: :get }%>
+          <%= link_to "Cerrar Sesión", destroy_user_session_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium", data: { turbo_method: :get } %>
         <% end %>
       </div>
       <div class="sm:hidden flex items-center">
-        <!-- Botón para abrir el menú off-canvas -->
-        <button type="button" class="text-white hover:bg-blue-700 px-2 py-1 rounded-md" data-action="click->menu#toggle">
+        <button type="button" class="text-white hover:bg-[#B68400] px-2 py-1 rounded-md" data-action="click->menu#toggle">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -36,39 +34,35 @@
     </div>
   </div>
 
-  <!-- Menú off-canvas para móviles -->
-<div class="fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out translate-x-full sm:hidden" data-menu-target="offCanvas">
-  <!-- Fondo oscuro -->
-  <div class="fixed inset-0 bg-black z-40" data-action="click->menu#toggle" style="opacity: 0.50"></div>
-  <!-- Menú off-canvas -->
-  <div class="relative w-64 h-full bg-blue-600 shadow-lg z-50 ml-auto">
-    <div class="p-4">
-      <!-- Botón de cierre -->
-      <div class="flex justify-end">
-        <button type="button" class="text-white hover:bg-blue-700 px-2 py-1 rounded-md mb-4" data-action="click->menu#toggle">
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      
-      <%= link_to "Inicio", root_path, class: "block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200" %>
-      
-      <% if !user_signed_in? %>
-        <%= link_to "Registrarse", new_user_registration_path, class: "my-2 block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200" %>
-        <%= link_to "Iniciar Sesión", new_user_session_path, class: "my-2 block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200" %>
-      <% end %>
+  <div class="fixed inset-0 z-50 transform transition-transform duration-300 ease-in-out translate-x-full sm:hidden" data-menu-target="offCanvas">
+    <div class="fixed inset-0 bg-[#3D3935] opacity-50 z-40" data-action="click->menu#toggle"></div>
+    <div class="relative w-64 h-full bg-[#AB0A3D] shadow-lg z-50 ml-auto">
+      <div class="p-4">
+        <div class="flex justify-end">
+          <button type="button" class="text-white hover:bg-[#B68400] px-2 py-1 rounded-md mb-4" data-action="click->menu#toggle">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-      <% if user_signed_in?%>
-        <% if !current_user.admin? %>
-          <%= link_to "Mis Vehiculos", vehiculos_path, class: "my-2 block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200" %>
-        <% else %>
-          <%= link_to "Clubs", admin_clubs_path, class: "my-2 block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200"%>
-          <%= link_to "Usuarios", admin_users_path, class: "my-2 block bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-800 transition duration-200"%>
+        <%= link_to "Inicio", root_path, class: "block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
+
+        <% if !user_signed_in? %>
+          <%= link_to "Registrarse", new_user_registration_path, class: "my-2 block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
+          <%= link_to "Iniciar Sesión", new_user_session_path, class: "my-2 block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
         <% end %>
-        <%= link_to "Cerrar Sesión", destroy_user_session_path, class: "my-2 block bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-800 transition duration-200",  data: { turbo_method: :get }%>
-      <% end %>
+
+        <% if user_signed_in? %>
+          <% if !current_user.admin? %>
+            <%= link_to "Mis Vehículos", vehiculos_path, class: "my-2 block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
+          <% else %>
+            <%= link_to "Clubs", admin_clubs_path, class: "my-2 block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
+            <%= link_to "Usuarios", admin_users_path, class: "my-2 block bg-[#B68400] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#3D3935] transition duration-200" %>
+          <% end %>
+          <%= link_to "Cerrar Sesión", destroy_user_session_path, class: "my-2 block bg-[#3D3935] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#AB0A3D] transition duration-200", data: { turbo_method: :get } %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </nav>
