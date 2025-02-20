@@ -102,9 +102,6 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.0)
     crass (1.0.6)
-    cronex (0.15.0)
-      tzinfo
-      unicode (>= 0.4.4.5)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -121,13 +118,8 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
-    et-orbi (1.2.11)
-      tzinfo
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    fugit (1.11.1)
-      et-orbi (~> 1, >= 1.2.11)
-      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -156,7 +148,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    logger (1.6.5)
+    logger (1.6.6)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -182,21 +174,21 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.2-aarch64-linux-gnu)
+    nokogiri (1.18.3-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.2-aarch64-linux-musl)
+    nokogiri (1.18.3-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.2-arm-linux-gnu)
+    nokogiri (1.18.3-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.2-arm-linux-musl)
+    nokogiri (1.18.3-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.2-arm64-darwin)
+    nokogiri (1.18.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.2-x86_64-darwin)
+    nokogiri (1.18.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.2-x86_64-linux-gnu)
+    nokogiri (1.18.3-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.2-x86_64-linux-musl)
+    nokogiri (1.18.3-x86_64-linux-musl)
       racc (~> 1.4)
     observer (0.1.2)
     orm_adapter (0.5.0)
@@ -224,7 +216,6 @@ GEM
     public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
-    raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.10)
     rack-session (2.1.0)
@@ -270,15 +261,13 @@ GEM
       i18n
     rdoc (6.12.0)
       psych (>= 4.0.0)
-    redis-client (0.23.2)
-      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.4.0)
+    rexml (3.4.1)
     rmagick (6.1.1)
       observer (~> 0.1)
       pkg-config (~> 1.4)
@@ -294,17 +283,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.9)
-      base64
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
-    sidekiq-cron (2.1.0)
-      cronex (>= 0.13.0)
-      fugit (~> 1.8, >= 1.11.1)
-      globalid (>= 1.0.1)
-      sidekiq (>= 6.5.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -314,17 +292,17 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.2)
-    tailwindcss-rails (4.0.0)
+    stringio (3.1.3)
+    tailwindcss-rails (4.1.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
-    tailwindcss-ruby (4.0.6)
-    tailwindcss-ruby (4.0.6-aarch64-linux-gnu)
-    tailwindcss-ruby (4.0.6-aarch64-linux-musl)
-    tailwindcss-ruby (4.0.6-arm64-darwin)
-    tailwindcss-ruby (4.0.6-x86_64-darwin)
-    tailwindcss-ruby (4.0.6-x86_64-linux-gnu)
-    tailwindcss-ruby (4.0.6-x86_64-linux-musl)
+    tailwindcss-ruby (4.0.7)
+    tailwindcss-ruby (4.0.7-aarch64-linux-gnu)
+    tailwindcss-ruby (4.0.7-aarch64-linux-musl)
+    tailwindcss-ruby (4.0.7-arm64-darwin)
+    tailwindcss-ruby (4.0.7-x86_64-darwin)
+    tailwindcss-ruby (4.0.7-x86_64-linux-gnu)
+    tailwindcss-ruby (4.0.7-x86_64-linux-musl)
     thor (1.3.2)
     timeout (0.4.3)
     ttfunk (1.8.0)
@@ -334,7 +312,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode (0.4.4.5)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -349,7 +326,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.1)
+    zeitwerk (2.7.2)
 
 PLATFORMS
   aarch64-linux-gnu
@@ -358,7 +335,6 @@ PLATFORMS
   arm-linux-musl
   arm64-darwin
   x86_64-darwin
-  x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
 
@@ -383,8 +359,6 @@ DEPENDENCIES
   rmagick (~> 6.1, >= 6.1.1)
   rqrcode
   selenium-webdriver
-  sidekiq
-  sidekiq-cron
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
