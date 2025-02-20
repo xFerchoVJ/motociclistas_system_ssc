@@ -26,6 +26,7 @@ class User < ApplicationRecord
   # Relaciones
   belongs_to :club, optional: true
   has_many :vehiculos, dependent: :destroy
+  has_many :constancias, dependent: :destroy
 
   # Métodos adicionales
   def nombre_completo
