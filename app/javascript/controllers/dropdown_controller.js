@@ -4,15 +4,27 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["menu"];
 
-  toggle() {
-    // Cerrar otros dropdowns abiertos
-    document.querySelectorAll("[data-controller='dropdown']").forEach((element) => {
-      if (element !== this.element) {
-        element.querySelector("[data-dropdown-target='menu']").classList.add("hidden");
-      }
-    });
+  connect() {
+    document.addEventListener("click", this.closeDropdown.bind(this));
+  }
 
-    // Alternar el dropdown actual
+  disconnect() {
+    document.removeEventListener("click", this.closeDropdown.bind(this));
+  }
+
+  toggle(event) {
+    event.stopPropagation();
     this.menuTarget.classList.toggle("hidden");
+    this.menuTarget.classList.toggle("transition-transform");
+    this.menuTarget.classList.toggle("duration-200");
+    this.menuTarget.classList.toggle("ease-in-out");
+    this.menuTarget.classList.toggle("transform");
+    this.menuTarget.classList.toggle("scale-95");
+  }
+
+  closeDropdown(event) {
+    if (!this.element.contains(event.target)) {
+      this.menuTarget.classList.add("hidden");
+    }
   }
 }

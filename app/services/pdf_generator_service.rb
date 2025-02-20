@@ -1,67 +1,107 @@
 class PdfGeneratorService
-  def initialize(vehiculo)
-    @vehiculo = vehiculo
+
+  def initialize(resource)
+    @resource = resource
   end
 
   def generate_pdf
     pdf = Prawn::Document.new
-    pdf.text "Información del Vehículo", size: 24, style: :bold, align: :center
-    pdf.move_down 20
-
-    pdf.text "Datos del Vehículo", size: 18, style: :bold
-    pdf.move_down 10
-
-    vehiculo_data = [
-      ["Marca:", @vehiculo.marca],
-      ["Modelo:", @vehiculo.modelo],
-      ["Submarca:", @vehiculo.submarca],
-      ["Año:", @vehiculo.anio],
-      ["Placa:", @vehiculo.placa],
-      ["Estado de Emplacamiento:", @vehiculo.estado_emplacamiento],
-      ["VIN:", @vehiculo.vin]
-    ]
-
-    pdf.table(vehiculo_data, width: 500) do
-      cells.padding = 8
-      cells.borders = []
-      column(0).font_style = :bold
+    if @resource.is_a?(Vehiculo)
+      generate_vehiculo_pdf(pdf)
+    elsif @resource.is_a?(User)
+      generate_user_pdf(pdf)
     end
+    pdf
+  end
 
-    pdf.move_down 20
+  private
 
-    pdf.text "Datos del Propietario", size: 18, style: :bold
+  def generate_vehiculo_pdf(pdf)
+    pdf.move_down 30
+    pdf.text_box "Constancia de Inscripción en el Registro oficial de Motociclismo", size: 24, style: :bold, at: [60, pdf.cursor], align: :right
+    pdf.move_down 70
+
+    pdf.stroke_color 'AB0A3D'
+    pdf.stroke do
+      pdf.line_width 5
+      pdf.horizontal_rule
+    end
+    pdf.move_down 30
+
+    pdf.text "Información", size: 18, style: :bold
     pdf.move_down 10
 
-    user = @vehiculo.user
+    user = @resource.user
 
     usuario_data = [
       ["Nombre:", user.nombre],
       ["Apellido Paterno:", user.apellido_paterno],
       ["Apellido Materno:", user.apellido_materno],
       ["Teléfono:", user.telefono],
-      ["Contacto de Emergencia:", user.contacto_emergencia],
-      ["Teléfono de Emergencia:", user.telefono_emergencia],
-      ["Club:", user.club.nombre]
+      ["Estado:", user.estado],
+      ["Municipio:", user.municipio],
+      ["Marca:", @resource.marca],
+      ["Modelo:", @resource.modelo],
+      ["Año:", @resource.anio],
+      ["Placas:", @resource.placa]
     ]
 
-    pdf.table(usuario_data, width: 500) do
+    pdf.table(usuario_data, width: 350) do
       cells.padding = 8
       cells.borders = []
       column(0).font_style = :bold
     end
 
-    
-    pdf.move_down 300
-
-    if @vehiculo.qr_code
-      pdf.text "Código QR", size: 18, style: :bold
-      pdf.move_down 10
-
-      qr_image = @vehiculo.qr_code.sub("data:image/png;base64,", "")
+    if @resource.qr_code
+      qr_image = @resource.qr_code.sub("data:image/png;base64,", "")
       image = StringIO.new(Base64.decode64(qr_image))
-      pdf.image image, width: 150, position: :center
+      pdf.bounding_box([350, pdf.cursor + 150], width: 150, height: 150) do
+        pdf.image image, width: 150, height: 150
+      end
+    end
+  end
+
+  def generate_user_pdf(pdf)
+    pdf.move_down 30
+    pdf.text_box "Constancia de Registro oficial de Motociclismo", size: 24, style: :bold, at: [60, pdf.cursor], align: :right
+    pdf.move_down 70
+
+    pdf.stroke_color 'AB0A3D'
+    pdf.stroke do
+      pdf.line_width 5
+      pdf.horizontal_rule
+    end
+    pdf.move_down 30
+
+    pdf.text "Datos del Usuario", size: 18, style: :bold
+    pdf.move_down 10
+
+    user_data = [
+      ["Nombre:", @resource.nombre],
+      ["Apellido Paterno:", @resource.apellido_paterno],
+      ["Apellido Materno:", @resource.apellido_materno],
+      ["CURP:", @resource.curp],
+      ["Teléfono:", @resource.telefono],
+      ["Estado:", @resource.estado],
+      ["Municipio:", @resource.municipio]
+    ]
+
+    pdf.table(user_data, width: 350) do
+      cells.padding = 8
+      cells.borders = []
+      column(0).font_style = :bold
     end
 
-    pdf
+    if @resource.constancias.where(status: true).first.qr_code?
+      qr_image = @resource.constancias.where(status: true).first.qr_code.sub("data:image/png;base64,", "")
+      image = StringIO.new(Base64.decode64(qr_image))
+      pdf.bounding_box([350, pdf.cursor + 150], width: 150, height: 150) do
+        pdf.image image, width: 150, height: 150
+      end
+    end
+
+    pdf.move_down 50
+
+    pdf.text "Fecha de vigencia - #{@resource.constancias.where(status: true).first.fecha_expiracion.strftime("%d/%m/%Y")}", size: 18, style: :bold, align: :center
   end
 end

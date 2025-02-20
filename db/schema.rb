@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_14_044831) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_20_053616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_044831) do
     t.string "representante"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "constancias", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vehiculo_id"
+    t.datetime "fecha_emision", null: false
+    t.datetime "fecha_expiracion", null: false
+    t.text "qr_code"
+    t.boolean "status", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_constancias_on_user_id"
+    t.index ["vehiculo_id"], name: "index_constancias_on_vehiculo_id"
   end
 
   create_table "pases_turisticos", force: :cascade do |t|
@@ -96,6 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_14_044831) do
     t.index ["user_id"], name: "index_verificacions_on_user_id"
   end
 
+  add_foreign_key "constancias", "users"
+  add_foreign_key "constancias", "vehiculos"
   add_foreign_key "pases_turisticos", "users"
   add_foreign_key "users", "clubs"
   add_foreign_key "vehiculos", "users"

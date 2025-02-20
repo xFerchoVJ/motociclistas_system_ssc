@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :pases_turisticos
   resources :vehiculos
   get 'public/:id', to: 'home#public_show_vehicle', as: :public_show_vehicle
+  get 'info-user/:id', to: 'home#info_user', as: :info_user
 
   # Admins
   namespace :admin do
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
       member do
         patch :reactivate
         patch :approve_user
+        get :generate_pdf
+        get :view_pdf
+        get :download_pdf
       end
     end
     
