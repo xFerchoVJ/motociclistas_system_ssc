@@ -55,8 +55,6 @@ gem 'ransack'  # Filtrado y búsqueda
 gem 'rqrcode'  # Generar códigos QR
 gem 'prawn', '~> 2.1' # Generar PDFs
 gem 'prawn-table', '~> 0.2.2' # Tablas en PDFs
-gem 'prawn-fast-png', '~> 0.2.3'
-gem 'rmagick', '~> 6.1', '>= 6.1.1' # Manipulación de imágenes
 
 
 
