@@ -1,0 +1,22 @@
+<div id="<%= dom_id appointment %>" class="space-y-4">
+  <div class="mb-4">
+    <strong class="block text-sm font-medium text-gray-500 mb-1">Estado:</strong>
+    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
+                 <%= case appointment.status
+                     when 'en_progreso' then 'bg-yellow-100 text-yellow-800'
+                     when 'completada' then 'bg-green-100 text-green-800'
+                     when 'cancelada' then 'bg-red-100 text-red-800'
+                     else 'bg-gray-100 text-gray-800'
+                     end %>">
+      <%= appointment.status.gsub('_', ' ').capitalize %>
+    </span>
+  </div>
+  <div>
+    <strong class="block text-sm font-medium text-gray-500 mb-1">Fecha:</strong>
+    <p class="text-gray-900"><%= appointment.fecha %></p>
+  </div>
+  <div>
+    <strong class="block text-sm font-medium text-gray-500 mb-1">Hora:</strong>
+    <p class="text-gray-900"><%= appointment.hora.strftime("%I:%M %p") %></p>
+  </div>
+</div>

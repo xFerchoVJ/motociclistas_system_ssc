@@ -1,0 +1,14 @@
+<div class="min-h-screen bg-gradient-to-r from-gray-50 to-gray-100 p-6 sm:p-8">
+  <div class="max-w-3xl mx-auto">
+    <!-- Título -->
+    <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Registrar Nueva Cita</h1>
+
+    <!-- Formulario -->
+    <%= render "form", appointment: @appointment %>
+
+    <!-- Botón para volver -->
+    <div class="mt-8 text-center">
+      <%= link_to "Volver a citas Registradas", appointments_path, class: "inline-block bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
+  </div>
+</div>

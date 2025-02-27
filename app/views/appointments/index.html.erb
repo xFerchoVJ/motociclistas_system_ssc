@@ -1,0 +1,94 @@
+<style>
+  #boton-filtrar {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    #boton-filtrar {
+      width: 15%;
+    }
+  }
+</style>
+
+<div class="min-h-screen bg-gradient-to-r from-gray-50 to-gray-100 p-4 sm:p-6">
+  <!-- Título -->
+  <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Citas Registradas</h1>
+
+  <!-- Formulario de filtrado -->
+  <div class="mb-6">
+    <%= form_with url: appointments_path, method: :get, local: true do %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div>
+          <%= label_tag :status, "Estado", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= select_tag :status, 
+              options_for_select([["Todos", ""], ["Pendientes", "en progreso"], ["Completadas", "completada"], ["Canceladas", "cancelada"]],
+              params[:status]), 
+              class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" 
+          %>
+        </div>
+        <div>
+          <%= label_tag :fecha, "Fecha", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= date_field_tag :fecha, params[:fecha], class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+        <div>
+          <%= label_tag :hora, "Hora", class: "block text-sm font-medium text-gray-700 mb-1" %>
+          <%= time_field_tag :hora, params[:hora], class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+        </div>
+      </div>
+      <div class="mt-4">
+        <%= submit_tag "Filtrar", id: "boton-filtrar", class: "bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <!-- Botón para agregar nueva cita (solo se muestra si hay citas) -->
+  <% if @appointments.any? %>
+    <div class="mt-6 flex justify-end">
+      <%= link_to "Agregar nueva cita", new_appointment_path, class: "inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
+  <% end %>
+  <!-- Lista de citas en tabla -->
+  <% if @appointments.any? %>
+    <div class="overflow-x-auto bg-white rounded-lg shadow-sm">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hora</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @appointments.each do |cita| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= cita.fecha %></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><%= cita.hora.strftime("%I:%M %p") %></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <span class="px-2 py-1 text-xs font-semibold rounded-full 
+                  <%= case cita.status
+                      when 'en_progreso' then 'bg-yellow-100 text-yellow-800'
+                      when 'completada' then 'bg-green-100 text-green-800'
+                      when 'cancelada' then 'bg-red-100 text-red-800'
+                      else 'bg-gray-100 text-gray-800'
+                      end %>">
+                  <%= cita.status.gsub('_', ' ').capitalize %>
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm">
+                <%= link_to "Ver detalles", cita, class: "inline-block bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <!-- Mensaje cuando no hay citas -->
+    <div class="text-center py-6">
+      <p class="text-gray-600 text-lg mb-4">Aún no has registrado ninguna cita.</p>
+      <%= link_to "Registrar mi primera cita", new_appointment_path, class: "inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200" %>
+    </div>
+  <% end %>
+</div>
