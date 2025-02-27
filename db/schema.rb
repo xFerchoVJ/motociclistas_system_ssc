@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_20_053616) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_26_194453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "fecha"
+    t.time "hora"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "en progreso"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
 
   create_table "clubs", force: :cascade do |t|
     t.string "nombre"
@@ -109,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_20_053616) do
     t.index ["user_id"], name: "index_verificacions_on_user_id"
   end
 
+  add_foreign_key "appointments", "users"
   add_foreign_key "constancias", "users"
   add_foreign_key "constancias", "vehiculos"
   add_foreign_key "pases_turisticos", "users"

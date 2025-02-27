@@ -22,11 +22,13 @@ class User < ApplicationRecord
   validates :telefono, presence: { message: "no puede estar en blanco" }
   validates :role, presence: { message: "no puede estar en blanco" }
   validates :status, presence: { message: "no puede estar en blanco" }
+  validates :club_id, presence: {message: "no puede estar en blanco"}
 
   # Relaciones
   belongs_to :club, optional: true
   has_many :vehiculos, dependent: :destroy
   has_many :constancias, dependent: :destroy
+  has_many :appointments, dependent: :destroy
 
   # Métodos adicionales
   def nombre_completo
@@ -38,7 +40,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && active?
+    super && (active? || in_progress?)
   end
 
   def inactive_message
@@ -60,4 +62,9 @@ class User < ApplicationRecord
   ransacker :nombre_completo do
     Arel.sql("CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno)")
   end
+
+  def has_motorcycle_in_progress?
+    vehiculos.exists?(status: :in_progress)
+  end
+  
 end

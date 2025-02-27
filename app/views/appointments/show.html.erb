@@ -1,0 +1,29 @@
+<% content_for :title, "Detalles de la cita" %>
+
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <% if notice.present? %>
+    <div class="p-4 mb-6 bg-green-50 rounded-lg text-green-600 text-sm font-medium">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">Detalles de la cita</h1>
+
+  <div class="bg-gray-50 rounded-lg shadow-sm p-6 sm:p-8">
+    <%= render @appointment %>
+
+    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+      
+      <% if @appointment.status == 'cancelada' || @appointment.status == 'completada' %>
+        <%= link_to "Volver a citas", appointments_path, class: "px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition duration-200" %>
+      <% else %>
+        <%= link_to "Volver a citas", appointments_path, class: "px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition duration-200" %>
+        <%= button_to "Cancelar esta cita", cancelate_appointment_appointment_path(@appointment), method: :patch,
+                      class: "px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition duration-200",
+                      data: { turbo_confirm: "¿Desea cancelar esta cita?" } %>
+      <% end %>
+      
+      
+    </div>
+  </div>
+</div>

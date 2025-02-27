@@ -29,6 +29,55 @@
   </header>
 
   <!-- Features Section -->
+  
+  <% if user_signed_in? %>
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+          <h2 class="text-base text-[#AB0A3D] font-semibold tracking-wide uppercase">GESTIÓN</h2>
+          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-[#3D3935] sm:text-4xl">
+            Gestiona tus Motocicletas
+          </p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="relative group">
+            <%= link_to vehiculos_path, class: "block p-6 bg-white rounded-lg shadow-md hover:bg-gray-100" do %>
+              <dt>
+                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Motocicletas</p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-600">
+                Registra y controla los vehículos de tus usuarios.
+              </dd>
+            <% end %>
+          </div>
+
+          <% if current_user.status == "in_progress" || current_user.has_motorcycle_in_progress? %>
+            <div class="relative group">
+              <%= link_to new_appointment_path, class: "block p-6 bg-white rounded-lg shadow-md hover:bg-gray-100" do %>
+                <dt>
+                  <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h6m-6 4h3m-6 4h6m5-15h2a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h2m5 10l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Citas</p>
+                </dt>
+                <dd class="mt-2 ml-16 text-base text-gray-600">
+                  Crea una cita para validar tu información o validar tus Motocicletas registradas.
+                </dd>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% else %>
   <section class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="lg:text-center">
@@ -38,23 +87,22 @@
         </p>
       </div>
 
-      <div class="mt-10">
-        <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-          <div class="relative">
-            <dt>
-              <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Vehículos</p>
-            </dt>
-            <dd class="mt-2 ml-16 text-base text-gray-600">
-              Registra y controla los vehículos de tus usuarios.
-            </dd>
-          </div>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="relative">
+          <dt>
+            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Vehículos</p>
+          </dt>
+          <dd class="mt-2 ml-16 text-base text-gray-600">
+            Registra y controla los vehículos de tus usuarios.
+          </dd>
         </div>
       </div>
     </div>
   </section>
+  <% end %>
 </div>
