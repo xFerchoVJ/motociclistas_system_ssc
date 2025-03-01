@@ -57,23 +57,21 @@
             <% end %>
           </div>
 
-          <% if current_user.status == "in_progress" || current_user.has_motorcycle_in_progress? %>
-            <div class="relative group">
-              <%= link_to new_appointment_path, class: "block p-6 bg-white rounded-lg shadow-md hover:bg-gray-100" do %>
-                <dt>
-                  <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h6m-6 4h3m-6 4h6m5-15h2a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h2m5 10l2 2 4-4" />
-                    </svg>
-                  </div>
-                  <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Citas</p>
-                </dt>
-                <dd class="mt-2 ml-16 text-base text-gray-600">
-                  Crea una cita para validar tu información o validar tus Motocicletas registradas.
-                </dd>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="relative group">
+            <%= link_to new_appointment_path, class: "block p-6 bg-white rounded-lg shadow-md hover:bg-gray-100" do %>
+              <dt>
+                <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-[#B68400] text-white">
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h6m-6 4h3m-6 4h6m5-15h2a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h2m5 10l2 2 4-4" />
+                  </svg>
+                </div>
+                <p class="ml-16 text-lg leading-6 font-medium text-[#3D3935]">Citas</p>
+              </dt>
+              <dd class="mt-2 ml-16 text-base text-gray-600">
+                Crea una cita para validar tu información o validar tus Motocicletas registradas.
+              </dd>
+            <% end %>
+          </div>
         </div>
       </div>
     </section>

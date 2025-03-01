@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [
       :nombre, :apellido_paterno, :apellido_materno, :curp, :estado, :municipio,
       :telefono, :es_turista, :club_id, :contacto_emergencia, :telefono_emergencia,
-      :donador_organos, :tipo_sangre, :alergias, :medicamento_contraindicado, :role
+      :donador_organos, :tipo_sangre, :alergias, :medicamento_contraindicado, :role,
+      :seguridad_medica
     ])
   end
 end

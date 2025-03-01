@@ -14,7 +14,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <%= f.label :nombre, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :nombre, required: true, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+            <%= f.text_field :nombre,  autofocus: true, required: true, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
 
           <div>
@@ -37,7 +37,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <%= f.label :email, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+            <%= f.email_field :email, autocomplete: "email", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
 
           <div>
@@ -96,7 +96,7 @@
         </div>
 
         <!-- Sección 5: Información médica -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-controller="user-registration">
           <div>
             <%= f.label :tipo_sangre, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.text_field :tipo_sangre, maxlength: 10, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
@@ -110,6 +110,24 @@
           <div>
             <%= f.label :medicamento_contraindicado, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.text_area :medicamento_contraindicado, rows: 3, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+          </div>
+
+          <div>
+            <%= f.label :seguridad_medica, "Seguridad Médica", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <select class="w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200"
+            data-action="user-registration#onChangeSelect">
+              <option value="">Selecciona una opción</option>
+              <option value="IMSS">IMSS</option>
+              <option value="ISSTE">ISSTE</option>
+              <option value="Seguro Popular">Seguro Popular</option>
+              <option value="Gastos de seguros médicos privados privados">Gastos de seguros médicos privados</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+
+          <div data-user-registration-target="divHidden" hidden>
+            <%= f.label :seguridad_medica, "Especificar otro tipo de seguridad médica", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :seguridad_medica, data: {'user-registration-target': "seguridadMedica"}, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
         </div>
 
