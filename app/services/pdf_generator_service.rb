@@ -1,5 +1,4 @@
 class PdfGeneratorService
-
   def initialize(resource)
     @resource = resource
   end
@@ -17,6 +16,9 @@ class PdfGeneratorService
   private
 
   def generate_vehiculo_pdf(pdf)
+    # Agregar la imagen al encabezado
+    add_header_image(pdf)
+
     pdf.move_down 30
     pdf.text_box "Constancia de Inscripción en el Registro oficial de Motociclismo", size: 24, style: :bold, at: [60, pdf.cursor], align: :right
     pdf.move_down 70
@@ -42,7 +44,7 @@ class PdfGeneratorService
       ["Municipio:", user.municipio],
       ["Marca:", @resource.marca],
       ["Modelo:", @resource.modelo],
-      ["Año:", @resource.anio],
+      ["Linea:", @resource.linea],
       ["Placas:", @resource.placa]
     ]
 
@@ -62,6 +64,9 @@ class PdfGeneratorService
   end
 
   def generate_user_pdf(pdf)
+    # Agregar la imagen al encabezado
+    add_header_image(pdf)
+
     pdf.move_down 30
     pdf.text_box "Constancia de Registro oficial de Motociclismo", size: 24, style: :bold, at: [60, pdf.cursor], align: :right
     pdf.move_down 70
@@ -103,5 +108,27 @@ class PdfGeneratorService
     pdf.move_down 50
 
     pdf.text "Fecha de vigencia - #{@resource.constancias.where(status: true).first.fecha_expiracion.strftime("%d/%m/%Y")}", size: 18, style: :bold, align: :center
+  end
+
+  # Método para agregar la imagen al encabezado
+  def add_header_image(pdf)
+    require 'open-uri' # Asegúrate de requerir open-uri
+    require 'base64'   # Para manejar la codificación Base64
+  
+    # Leer la imagen desde la URL
+    image_url = "https://res.cloudinary.com/djbzeisgm/image/upload/v1740808529/e7olgnrq5kaxgrombi7q.png"
+    image_data = OpenURI.open_uri(image_url).read
+  
+    # Convertir la imagen a Base64
+    image_base64 = Base64.strict_encode64(image_data)
+  
+    # Decodificar Base64 y crear un objeto StringIO
+    decoded_image = Base64.decode64(image_base64)
+    image_io = StringIO.new(decoded_image)
+  
+    # Insertar la imagen en el PDF
+    pdf.bounding_box([pdf.bounds.right - 150, pdf.bounds.top], width: 150, height: 50) do
+      pdf.image image_io, width: 150, height: 50
+    end
   end
 end

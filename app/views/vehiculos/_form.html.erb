@@ -24,13 +24,8 @@
     </div>
 
     <div>
-      <%= form.label :submarca, class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.text_field :submarca, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
-    </div>
-
-    <div>
-      <%= form.label :anio, "Año", class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.number_field :anio, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+      <%= form.label :linea, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :linea, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
     </div>
 
     <div>
@@ -44,13 +39,21 @@
     </div>
 
     <div>
-      <%= form.label :vin, class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.text_field :vin, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+      <%= form.label :numero_serie, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :numero_serie, class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
+    </div>
+
+    <div>
+      <%= form.label :tipo_servicio, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.select :tipo_servicio,
+          options_for_select([["Selecciona una opción", ""], "Particular", "Servicio Público", "Empresa"], vehiculo.tipo_servicio), 
+          {}, 
+          class: "w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
     </div>
   </div>
 
   <!-- Botón de enviar -->
   <div class="mt-8 text-center">
-    <%= form.submit "Guardar Vehículo", class: "inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
+    <%= form.submit "Guardar Motocicleta", class: "inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
   </div>
 <% end %>

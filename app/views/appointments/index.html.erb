@@ -14,33 +14,6 @@
   <!-- Título -->
   <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">Citas Registradas</h1>
 
-  <!-- Formulario de filtrado -->
-  <div class="mb-6">
-    <%= form_with url: appointments_path, method: :get, local: true do %>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div>
-          <%= label_tag :status, "Estado", class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= select_tag :status, 
-              options_for_select([["Todos", ""], ["Pendientes", "en progreso"], ["Completadas", "completada"], ["Canceladas", "cancelada"]],
-              params[:status]), 
-              class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" 
-          %>
-        </div>
-        <div>
-          <%= label_tag :fecha, "Fecha", class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= date_field_tag :fecha, params[:fecha], class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
-        </div>
-        <div>
-          <%= label_tag :hora, "Hora", class: "block text-sm font-medium text-gray-700 mb-1" %>
-          <%= time_field_tag :hora, params[:hora], class: "w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-200" %>
-        </div>
-      </div>
-      <div class="mt-4">
-        <%= submit_tag "Filtrar", id: "boton-filtrar", class: "bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200" %>
-      </div>
-    <% end %>
-  </div>
-
 
   <!-- Botón para agregar nueva cita (solo se muestra si hay citas) -->
   <% if @appointments.any? %>

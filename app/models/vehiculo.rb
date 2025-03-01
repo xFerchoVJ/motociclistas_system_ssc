@@ -2,46 +2,13 @@ class Vehiculo < ApplicationRecord
   belongs_to :user
 
   # Validaciones
-  validates :marca, 
-            presence: { message: "La marca es obligatoria. No puede estar en blanco." }
-
-  validates :modelo, 
-            presence: { message: "El modelo es obligatorio. No puede estar en blanco." }
-
-  validates :submarca, 
-            presence: { message: "La submarca es obligatoria. No puede estar en blanco." }
-
-  validates :anio, 
-            presence: { message: "El año es obligatorio. No puede estar en blanco." },
-            numericality: { 
-              only_integer: true, 
-              greater_than_or_equal_to: 1900, 
-              less_than_or_equal_to: Date.today.year,
-              message: "El año debe ser un número válido entre 1900 y el año actual."
-            }
-
-  validates :placa, 
-            uniqueness: { message: "La placa ya está registrada. Por favor, utiliza una placa única." }, 
-            presence: { message: "La placa es obligatoria. No puede estar en blanco." },
-            format: {
-              with: /\A[A-Z0-9]+\z/,
-              message: "La placa solo puede contener letras mayúsculas y números."
-            }
-
-  validates :estado_emplacamiento, 
-            presence: { message: "El estado de emplacamiento es obligatorio. No puede estar en blanco." }
-
-  validates :vin, 
-            uniqueness: { message: "El VIN ya está registrado. Por favor, utiliza un VIN único." }, 
-            presence: { message: "El VIN es obligatorio. No puede estar en blanco." },
-            length: {
-              is: 17,
-              message: "El VIN debe tener exactamente 17 caracteres."
-            },
-            format: {
-              with: /\A[A-Z0-9]+\z/,
-              message: "El VIN solo puede contener letras mayúsculas y números."
-            }
+  validates :marca, presence: { message: "La marca no puede estar en blanco" }, length: { maximum: 50 }
+  validates :modelo, presence: { message: "El modelo no puede estar en blanco" }, length: { maximum: 50 }
+  validates :linea, presence: { message: "La línea no puede estar en blanco" }, length: { maximum: 50 }
+  validates :placa, presence: { message: "La placa no puede estar en blanco" }, uniqueness: { message: "La placa ya está registrada" }, length: { maximum: 20 }
+  validates :estado_emplacamiento, presence: { message: "El estado de emplacamiento no puede estar en blanco" }, length: { maximum: 100 }
+  validates :numero_serie, presence: { message: "El número de serie no puede estar en blanco" }, length: { maximum: 50 }
+  validates :tipo_servicio, presence: { message: "El tipo de servicio no puede estar en blanco" }, inclusion: { in: ["Particular", "Servicio Público", "Empresa"], message: "no es un tipo de servicio válido" }
 
   # Enums
   enum status: {

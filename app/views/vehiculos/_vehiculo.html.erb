@@ -11,11 +11,11 @@
     </div>
 
     <div>
-      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Submarca:</strong> <%= vehiculo.submarca %></p>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Linea:</strong> <%= vehiculo.linea %></p>
     </div>
 
     <div>
-      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Año:</strong> <%= vehiculo.anio %></p>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Tipo de Servicio:</strong> <%= vehiculo.tipo_servicio  || "No indicado" %></p>
     </div>
 
     <div>
@@ -27,11 +27,11 @@
     </div>
 
     <div>
-      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">VIN:</strong> <%= vehiculo.vin %></p>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Número de serie:</strong> <%= vehiculo.numero_serie %></p>
     </div>
 
     <div>
-      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Usuario:</strong> <%= vehiculo.user.email %></p>
+      <p class="text-gray-700"><strong class="block text-sm font-medium text-gray-500">Dueño:</strong> <%= vehiculo.user.nombre_completo %></p>
     </div>
 
     <div class="col-span-1 sm:col-span-2 text-center mt-4">
