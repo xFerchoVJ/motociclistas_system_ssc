@@ -16,7 +16,7 @@
 
         <% if user_signed_in? %>
           <% if !current_user.admin? %>
-            <%= link_to "Mis Vehículos", vehiculos_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Mis Motocicletas", vehiculos_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
             <%= link_to "Mis Citas", appointments_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
           <% else %>
             <%= link_to "Clubs", admin_clubs_path, class: "text-white hover:bg-[#B68400] px-3 py-2 rounded-md text-sm font-medium" %>
