@@ -340,6 +340,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  nokogiri (~> 1.18, >= 1.18.3)
   pg (~> 1.1)
   prawn (~> 2.1)
   prawn-table (~> 0.2.2)

@@ -55,7 +55,7 @@ gem 'ransack'  # Filtrado y búsqueda
 gem 'rqrcode'  # Generar códigos QR
 gem 'prawn', '~> 2.1' # Generar PDFs
 gem 'prawn-table', '~> 0.2.2' # Tablas en PDFs
-
+gem 'nokogiri', '~> 1.18', '>= 1.18.3' # Procesar HTML y XML
 
 
 gem 'pry', '~> 0.15.0' # Consola interactiva

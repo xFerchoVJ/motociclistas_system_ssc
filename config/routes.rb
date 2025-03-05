@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
   get 'public/:id', to: 'home#public_show_vehicle', as: :public_show_vehicle
   get 'info-user/:id', to: 'home#info_user', as: :info_user
+  get 'estados', to: "states#estados"
+  get 'municipios', to: "states#municipios"
 
   # Admins
   namespace :admin do
