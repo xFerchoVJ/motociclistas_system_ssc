@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_28_223731) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_05_183041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_28_223731) do
     t.datetime "updated_at", null: false
     t.string "status", default: "en progreso"
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "asentamientos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "tipo"
+    t.bigint "municipio_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["municipio_id"], name: "index_asentamientos_on_municipio_id"
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -36,6 +45,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_28_223731) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "codigo_postals", force: :cascade do |t|
+    t.string "codigo"
+    t.bigint "asentamiento_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asentamiento_id"], name: "index_codigo_postals_on_asentamiento_id"
+  end
+
   create_table "constancias", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "vehiculo_id"
@@ -47,6 +64,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_28_223731) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_constancias_on_user_id"
     t.index ["vehiculo_id"], name: "index_constancias_on_vehiculo_id"
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string "nombre"
+    t.string "clave"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "municipios", force: :cascade do |t|
+    t.string "nombre"
+    t.string "clave"
+    t.bigint "estado_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["estado_id"], name: "index_municipios_on_estado_id"
   end
 
   create_table "pases_turisticos", force: :cascade do |t|
@@ -121,8 +154,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_28_223731) do
   end
 
   add_foreign_key "appointments", "users"
+  add_foreign_key "asentamientos", "municipios"
+  add_foreign_key "codigo_postals", "asentamientos"
   add_foreign_key "constancias", "users"
   add_foreign_key "constancias", "vehiculos"
+  add_foreign_key "municipios", "estados"
   add_foreign_key "pases_turisticos", "users"
   add_foreign_key "users", "clubs"
   add_foreign_key "vehiculos", "users"

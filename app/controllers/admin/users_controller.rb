@@ -53,6 +53,10 @@ class Admin::UsersController < ApplicationController
   
   def destroy
     @user.soft_delete
+    active_pdf = @user.constancias.where(status: true)
+    if active_pdf.any?
+      active_pdf.first.update(status: false, fecha_expiracion: DateTime.now)
+    end
     redirect_to admin_users_path, notice: "Usuario desactivado correctamente"
   end
 
