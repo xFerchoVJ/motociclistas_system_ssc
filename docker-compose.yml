@@ -1,16 +1,31 @@
-version: '3.8'
+version: "2.2"
 
 services:
-  db:
-    image: postgres:13
-    container_name: club_app_db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: club_app_development
+  app:
+    build: .
+    command: ./bin/rails server -b 0.0.0.0
     ports:
-      - "5433:5432"
+      - "3000:3000"
+    env_file:
+      - .env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - .:/rails
+    depends_on:
+      - db  # Asegúrate de que la app dependa del servicio db
+
+  db:
+    image: postgres:13  # Usa la versión de PostgreSQL que prefieras
+    environment:
+      POSTGRES_USER: club_app
+      POSTGRES_PASSWORD: ${CLUB_APP_DATABASE_PASSWORD}  # Usa la variable de entorno de tu .env
+      POSTGRES_DB: club_app_production
+    volumes:
+      - db-data:/var/lib/postgresql/data  # Volumen persistente para la base de datos
+      - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+    ports:
+      - "5432:5432"
+    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+
 volumes:
-  postgres_data:
+  db-data:

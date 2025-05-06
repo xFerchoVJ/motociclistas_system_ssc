@@ -24,7 +24,6 @@ development:
   database: club_app_development
   username: postgres
   password: password
-  database: club_app_development
   port: 5433
   host: localhost
   # The specified database role being used to connect to PostgreSQL.
@@ -83,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: club_app_production
-  username: club_app
-  password: <%= ENV["CLUB_APP_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
