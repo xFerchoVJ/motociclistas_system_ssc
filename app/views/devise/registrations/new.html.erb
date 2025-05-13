@@ -1,62 +1,37 @@
 <div class="min-h-screen flex items-center justify-center p-4 sm:p-6">
   <div class="w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden">
-    <!-- Fondo decorativo -->
     <div class="bg-[#AB0A3D] h-2"></div>
 
-    <!-- Contenido del formulario -->
-    <div class="p-6 sm:p-8">
+    <div class="p-6 sm:p-8" data-controller="tipo-persona">
       <h2 class="text-3xl font-bold text-center mb-6">Registrarse</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <!-- Sección 1: Información básica -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <%= f.label :nombre, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :nombre,  autofocus: true, required: true, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :apellido_paterno, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :apellido_paterno, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :apellido_materno, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :apellido_materno, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :curp, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :curp, maxlength: 18, required: true, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
+        <!-- Tipo de Persona -->
+        <div class="mb-4">
+          <%= f.label :tipo_persona, "Tipo de persona", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+          <%= f.select :tipo_persona, [["Física", "fisica"], ["Moral", "moral"]],
+              { prompt: "Selecciona tipo de persona" },
+              class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]",
+              data: { action: "tipo-persona#onChange" } %>
         </div>
 
-        <!-- Sección 2: Correo y contraseña -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Seccion email, password y confirmar password -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4" data-controller="estados">
           <div>
-            <%= f.label :email, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.email_field :email, autocomplete: "email", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+            <%= f.label :email, 'Correo', class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.email_field :email, required: true, autofocus: true, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
           </div>
-
           <div>
-            <%= f.label :password, "Contraseña", class: "block text-sm font-medium text-[#3D3935]" %>
-            <% if @minimum_password_length %>
-              <em class="text-xs text-[#3D3935]">(<%= @minimum_password_length %> caracteres mínimo)</em>
-            <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+            <%= f.label :password, 'Contraseña', class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.password_field :password, required: true, autocomplete: "new-password", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
           </div>
-
           <div>
-            <%= f.label :password_confirmation, "Confirmar contraseña", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+            <%= f.label :password_confirmation, 'Confirma tu contraseña', class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
           </div>
-        </div>
-
-        <!-- Sección 3: Información adicional -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-controller="estados">
-          <div>
+           <div>
             <%= f.label :estado, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.select :estado, [], 
             { prompt: "Selecciona un estado" },
@@ -66,8 +41,6 @@
               "estados-target": "estados"
             } %>
           </div>
-
-          <!-- Campo de Municipio -->
           <div>
             <%= f.label :municipio, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.select :municipio, [],
@@ -80,46 +53,37 @@
             <%= f.label :telefono, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.text_field :telefono, maxlength: 20, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
-        </div>
-
-        <!-- Sección 4: Club y contacto de emergencia -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <%= f.label :club_id, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.collection_select :club_id, Club.all, :id, :nombre, { prompt: "Selecciona un Club" }, { class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" } %>
           </div>
-
-          <div>
-            <%= f.label :contacto_emergencia, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :contacto_emergencia, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :telefono_emergencia, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_field :telefono_emergencia, maxlength: 20, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div class="flex items-center mt-6">
-            <%= f.check_box :donador_organos, class: "w-5 h-5 rounded border-[#3D3935] text-[#AB0A3D] focus:ring-[#AB0A3D]" %>
-            <%= f.label :donador_organos, class: "ml-2 text-sm text-[#3D3935]" %>
-          </div>
         </div>
+        
 
-        <!-- Sección 5: Información médica -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-controller="user-registration">
+        <!-- Sección para persona física -->
+        <div data-tipo-persona-target="fisica" class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-controller="user-registration">
+          <div>
+            <%= f.label :nombre, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :nombre, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+
+          <div>
+            <%= f.label :apellido_paterno, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :apellido_paterno, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+
+          <div>
+            <%= f.label :apellido_materno, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :apellido_materno, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+
+          <div>
+            <%= f.label :curp, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :curp, maxlength: 18, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
           <div>
             <%= f.label :tipo_sangre, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.text_field :tipo_sangre, maxlength: 10, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :alergias, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_area :alergias, rows: 3, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
-          </div>
-
-          <div>
-            <%= f.label :medicamento_contraindicado, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
-            <%= f.text_area :medicamento_contraindicado, rows: 3, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
 
           <div>
@@ -139,7 +103,38 @@
             <%= f.label :seguridad_medica, "Especificar otro tipo de seguridad médica", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
             <%= f.text_field :seguridad_medica, data: {'user-registration-target': "seguridadMedica"}, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
           </div>
+
+          <div>
+            <%= f.label :alergias, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_area :alergias, rows: 3, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+          </div>
+
+          <div>
+            <%= f.label :medicamento_contraindicado, class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_area :medicamento_contraindicado, rows: 3, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400] outline-none transition duration-200" %>
+          </div>
         </div>
+
+        <!-- Sección para persona moral -->
+        <div data-tipo-persona-target="moral" class="grid grid-cols-1 sm:grid-cols-2 gap-4 hidden">
+          <div>
+            <%= f.label :rfc, "RFC", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :rfc, maxlength: 13, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+
+          <div>
+            <%= f.label :domicilio, "Domicilio", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :domicilio, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+
+
+          <div>
+            <%= f.label :representante_legal, "Representante Legal", class: "block text-sm font-medium text-[#3D3935] mb-1" %>
+            <%= f.text_field :representante_legal, class: "w-full px-4 py-2 rounded-lg border border-[#3D3935] focus:border-[#AB0A3D] focus:ring-2 focus:ring-[#B68400]" %>
+          </div>
+        </div>
+
+        <!-- Puedes continuar aquí con el resto de los campos como email, password, estado, municipio, etc. -->
 
         <!-- Botón de registro -->
         <div class="mt-8">
@@ -147,7 +142,6 @@
         </div>
       <% end %>
 
-      <!-- Enlaces adicionales -->
       <div class="mt-6 text-center">
         <%= render "devise/shared/links" %>
       </div>

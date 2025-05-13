@@ -8,8 +8,11 @@ es:
               blank: "no puede estar en blanco"
             password:
               blank: "no puede estar en blanco"
+            password_confirmation:
+              confirmation: "La confirmación de la contraseña no coincide"
             curp:
               wrong_length: "debe tener 18 caracteres"
   errors:
     messages:
       blank: "no puede estar en blanco"
+      confirmation: "no coincide con %{attribute}"
