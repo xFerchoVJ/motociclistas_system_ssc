@@ -12,17 +12,28 @@ class User < ApplicationRecord
 
   attribute :es_turista, :boolean, default: false
   attribute :role, :integer, default: 0
+  attribute :tipo_persona, :string, default: "fisica" 
 
-  # Validaciones
-  validates :nombre, presence: { message: "no puede estar en blanco" }
-  validates :apellido_paterno, presence: { message: "no puede estar en blanco" }
-  validates :apellido_materno, presence: { message: "no puede estar en blanco" }
-  validates :curp, uniqueness: { message: "ya está en uso" }, length: { is: 18, wrong_length: "debe tener 18 caracteres" }
+  # Validaciones generales
   validates :email, uniqueness: { message: "ya está en uso" }, presence: { message: "no puede estar en blanco" }
   validates :telefono, presence: { message: "no puede estar en blanco" }
   validates :role, presence: { message: "no puede estar en blanco" }
   validates :status, presence: { message: "no puede estar en blanco" }
   validates :club_id, presence: {message: "no puede estar en blanco"}
+
+  # Validaciones específicas para tipo de persona
+  with_options if: -> { tipo_persona == 'fisica' } do
+    validates :nombre, presence: { message: "no puede estar en blanco" }
+    validates :apellido_paterno, presence: { message: "no puede estar en blanco" }
+    validates :apellido_materno, presence: { message: "no puede estar en blanco" }
+    validates :curp, uniqueness: { message: "ya está en uso" }, length: { is: 18, wrong_length: "debe tener 18 caracteres" }
+  end
+
+  with_options if: -> { tipo_persona == 'moral' } do
+    validates :rfc, presence: { message: "no puede estar en blanco" }
+    validates :domicilio, presence: { message: "no puede estar en blanco" }
+    validates :representante_legal, presence: { message: "no puede estar en blanco" }
+  end
 
   # Relaciones
   belongs_to :club, optional: true
@@ -32,7 +43,8 @@ class User < ApplicationRecord
 
   # Métodos adicionales
   def nombre_completo
-    "#{nombre} #{apellido_paterno} #{apellido_materno}".strip
+    "#{nombre} #{apellido_paterno} #{apellido_materno}".strip if tipo_persona == 'fisica'
+    representante_legal if tipo_persona == 'moral'
   end
 
   def soft_delete
